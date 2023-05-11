@@ -7,5 +7,5 @@ export const loadItems = createAction(
 
 export const loadedItems = createAction(
   '[Item List] Loaded success', //type*
-  props<{ items: ItemModel[] }>() //props - optionals
+  props<{ items: ReadonlyArray<ItemModel> }>() //props - optionals
 );
