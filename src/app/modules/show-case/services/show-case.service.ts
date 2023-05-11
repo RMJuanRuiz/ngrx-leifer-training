@@ -76,7 +76,7 @@ export class ShowCaseService {
     ]
 
     return of(data).pipe(
-      delay(1500)
+      delay(2500)
     )
   }
 

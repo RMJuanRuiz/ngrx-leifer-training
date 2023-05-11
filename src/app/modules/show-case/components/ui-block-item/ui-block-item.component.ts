@@ -1,28 +1,19 @@
-
-import { Component, Input, OnInit } from '@angular/core';
-import { ShowCaseService } from '@modules/show-case/services/show-case.service';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectItemsList } from '../../../../state/selectors/items.selectors';
+import { AppState } from '../../../../state/app.state';
 
 @Component({
   selector: 'app-ui-block-item',
   templateUrl: './ui-block-item.component.html',
-  styleUrls: ['./ui-block-item.component.css']
+  styleUrls: ['./ui-block-item.component.css'],
 })
 export class UiBlockItemComponent implements OnInit {
-
-  listData: any = []
-
-  constructor(private showCase: ShowCaseService) {
-
-
-  }
+  items$: Observable<any> = new Observable();
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.showCase.getDataApi()
-      .subscribe((res) => {
-        this.listData = res
-      })
+    this.items$ = this.store.select(selectItemsList);
   }
-
-
 }
